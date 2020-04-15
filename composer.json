@@ -1,0 +1,24 @@
+{
+    "name": "fanymagnet/mapper",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "description": "Simple mapper array to object",
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "authors": [
+        {
+            "name": "Sergey",
+            "email": "fanymagnet@mail.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "fanymagnet\\mapper\\": "src/",
+            "fanymagnet\\mapper\\tests\\": "tests/"
+        }
+    }
+}
