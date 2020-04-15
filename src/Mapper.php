@@ -4,14 +4,12 @@ namespace fanymagnet\mapper;
 
 use stdClass;
 
-use function {
-    property_exists,
-    class_exists,
-    array_keys,
-    is_array,
-    range,
-    count
-};
+use function property_exists;
+use function class_exists;
+use function array_keys;
+use function is_array;
+use function range;
+use function count;
 
 /**
  * Class Mapper
