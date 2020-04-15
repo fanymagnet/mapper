@@ -64,7 +64,7 @@ class Mapper
      * @param array $data
      * @return bool
      */
-    private function isAssociative(array $data): bool
+    private function isAssociative(array &$data): bool
     {
         return array_keys($data) !== range(0, count($data) - 1);
     }
