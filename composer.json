@@ -1,8 +1,8 @@
 {
     "name": "fanymagnet/mapper",
-    "license": "BSD-3-Clause",
     "type": "library",
     "description": "Simple mapper array to object",
+    "license": "BSD-3-Clause",
     "require-dev": {
         "phpunit/phpunit": "*"
     },

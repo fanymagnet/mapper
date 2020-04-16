@@ -26,7 +26,7 @@ class Mapper
      * Mapper constructor.
      * @param array $map
      */
-    public function __construct(array $map)
+    public function __construct(array $map = [])
     {
         $this->map = $map;
     }
@@ -38,22 +38,13 @@ class Mapper
      */
     public function map(string $class, array $data): object
     {
-        if (class_exists($class) === false) {
-            $class = stdClass::class;
-        }
-
-        /* @var object $object */
-        $object = new $class();
+        $object = $this->getObject($class);
 
         foreach ($data as $index => $value) {
-            if (property_exists($object, $index) === false && $object instanceof stdClass === false) {
-                continue;
-            }
-
-            if (is_array($value) === true && $this->isAssociative($value) === true) {
-                $object->{$index} = $this->map($this->map[$index] ?? stdClass::class, $value);
-            } else {
-                $object->{$index} = $value;
+            if (property_exists($object, $index) === true || $object instanceof stdClass === true) {
+                $object->{$index} = is_array($value) === true && $this->isAssociative($value) === true
+                    ? $object->{$index} = $this->map($this->map[$index] ?? stdClass::class, $value)
+                    : $value;
             }
         }
 
@@ -61,10 +52,19 @@ class Mapper
     }
 
     /**
+     * @param string $class
+     * @return object
+     */
+    private function getObject(string $class): object
+    {
+        return class_exists($class) === true ? new $class() : new stdClass();
+    }
+
+    /**
      * @param array $data
      * @return bool
      */
-    private function isAssociative(array &$data): bool
+    private function isAssociative(array $data): bool
     {
         return array_keys($data) !== range(0, count($data) - 1);
     }
