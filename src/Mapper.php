@@ -1,13 +1,6 @@
 <?php declare(strict_types = 0);
 
-use stdClass;
-
-use function property_exists;
-use function array_is_list;
-use function class_exists;
-use function is_array;
-
-class ArrayToObjectMapper
+final class ArrayToObjectDataMapper
 {
     public function __construct(
         private array $map = []
